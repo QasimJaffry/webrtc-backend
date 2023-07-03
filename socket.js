@@ -20,10 +20,6 @@ module.exports.initIO = (httpServer) => {
     console.log(socket.user, "Connected");
     socket.join(socket.user);
 
-    socket.on("connect_error", (err) => {
-      console.log(`connect_error due to ${err.message}`);
-    });
-
     socket.on("userConnect", (userId) => {
       if (!onlineUsers.some((user) => user === userId)) {
         // if user is not added before
