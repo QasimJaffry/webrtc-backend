@@ -12,9 +12,36 @@ module.exports.initIO = (httpServer) => {
     }
   });
 
+  let onlineUsers = [];
+
   IO.on("connection", (socket) => {
     console.log(socket.user, "Connected");
     socket.join(socket.user);
+
+    socket.on("connect_error", (err) => {
+      console.log(`connect_error due to ${err.message}`);
+    });
+
+    socket.on("userConnect", (userId) => {
+      if (!onlineUsers.some((user) => user === userId)) {
+        // if user is not added before
+        onlineUsers.push(userId);
+        console.log("new user is here!", onlineUsers);
+      }
+      // send all active users to new user
+      socket.emit("onlineUsers", onlineUsers);
+
+      // console.log(userId, "userIduserId");
+      // onlineUsers.add(userId);
+      // socket.emit("onlineUsers", Array.from(onlineUsers));
+    });
+
+    socket.on("disconnect", () => {
+      onlineUsers = onlineUsers.filter((user) => user.socketId !== socket.id);
+      console.log("user disconnected", onlineUsers);
+      // send all online users to all users
+      socket.emit("onlineUsers", onlineUsers);
+    });
 
     socket.on("call", (data) => {
       let calleeId = data.calleeId;
@@ -49,10 +76,14 @@ module.exports.initIO = (httpServer) => {
     });
 
     socket.on("end", (data) => {
-      console.log("LOCO", data.calleeId);
-      let calleeId = data.calleeId;
+      onlineUsers = onlineUsers.filter((user) => user !== data.calleeId);
+      // onlineUsers.delete(data.calleeId);
+      console.log(onlineUsers, "onlineUsersonlineUsersonlineUsers");
 
-      socket.to(calleeId).emit("endCall");
+      socket.emit("onlineUsers", onlineUsers);
+
+      // socket.emit("onlineUsers", Array.from(onlineUsers));
+      socket.to(data.calleeId).emit("endCall");
     });
   });
 };
