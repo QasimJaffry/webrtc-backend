@@ -25,6 +25,10 @@ app.use(
   swaggerUi.setup(swaggerDocument, { customCss })
 );
 
+app.get("/socket.io", function (req, res) {
+  res.send("Socket Working Fine 256.");
+});
+
 app.get("/api/users", (req, res) => {
   userController.getUsers().then((data) => res.json(data));
 });
