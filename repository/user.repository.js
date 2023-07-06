@@ -14,8 +14,8 @@ class UserRepository {
 
   async getUsers() {
     try {
-      const users = await this.db.tasks.findAll();
-      console.log("tasks:::", users);
+      const users = await this.db.users.findAll();
+      console.log("users:::", users);
       return users;
     } catch (err) {
       console.log(err);
@@ -46,6 +46,16 @@ class UserRepository {
           },
         }
       );
+    } catch (err) {
+      logger.error("Error::" + err);
+    }
+    return data;
+  }
+
+  async getUserById(userId) {
+    let data = {};
+    try {
+      await this.db.users.findByPk(userId);
     } catch (err) {
       logger.error("Error::" + err);
     }

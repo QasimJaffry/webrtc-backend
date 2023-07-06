@@ -33,6 +33,10 @@ app.get("/api/users", (req, res) => {
   userController.getUsers().then((data) => res.json(data));
 });
 
+app.get("/api/user/:id", (req, res) => {
+  userController.getUserById(req.body.task).then((data) => res.json(data));
+});
+
 app.post("/api/user", (req, res) => {
   console.log(req.body);
   userController.createUser(req.body.task).then((data) => res.json(data));
