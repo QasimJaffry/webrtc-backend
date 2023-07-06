@@ -6,6 +6,7 @@ module.exports = {
     return queryInterface.bulkInsert("users", [
       {
         id: 1,
+        token: "asdadsads",
         createdate: new Date(),
         updateddate: new Date(),
         createdby: "Qasim",

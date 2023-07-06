@@ -17,6 +17,11 @@ class UserController {
     return await userService.updateUser(user);
   }
 
+  async getUserById(userId) {
+    logger.info("Controller: getUserById", userId);
+    return await userService.getUserById(userId);
+  }
+
   async deleteUser(userId) {
     logger.info("Controller: deleteUser", userId);
     return await userService.deleteUser(userId);
