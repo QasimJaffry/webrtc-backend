@@ -3,7 +3,7 @@
     "username": "admin",
     "password": "",
     "database": "meetgreetdb",
-    "host": "localhost",
+    "host": "localhost:5432",
     "dialect": "postgres"
   },
   "test": {
@@ -17,7 +17,7 @@
     "username": "postgres",
     "password": "",
     "database": "meetgreetdb",
-    "host": "localhost",
+    "host": "localhost:5432",
     "dialect": "postgres"
   }
 }
