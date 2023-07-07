@@ -11,7 +11,7 @@ const connect = () => {
 
   const sequelize = new Sequelize(database, userName, password, {
     host: hostName,
-    dialect: dialect,
+    dialect: "postgres",
     operatorsAliases: false,
     port: port,
     pool: {
