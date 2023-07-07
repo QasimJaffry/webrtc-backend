@@ -8,16 +8,15 @@ module.exports = (sequelize, DataTypes, Model) => {
         allowNull: false,
         primaryKey: true,
       },
-      token: {
+      userId: {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: false,
       },
-      createdate: {
-        type: DataTypes.DATE,
-      },
-      updateddate: {
-        type: DataTypes.DATE,
+      token: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: false,
       },
     },
     {
