@@ -10,8 +10,6 @@ class UserRepository {
     this.db.sequelize.sync({ force: true }).then(() => {
       console.log("Drop and re-sync db.");
     });
-
-    console.log(this.db, "this.db");
   }
 
   async getUsers() {

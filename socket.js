@@ -90,7 +90,7 @@ module.exports.getIO = () => {
   if (!IO) {
     throw Error("IO not initilized.");
   } else {
-    console.log("EHYEYEYYE");
+    console.log("Not initilized");
     return IO;
   }
 };
