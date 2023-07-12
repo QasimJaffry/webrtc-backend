@@ -7,12 +7,48 @@ module.exports.initIO = (httpServer) => {
   });
 
   IO.use((socket, next) => {
-    if (socket.handshake.query) {
-      let callerId = socket.handshake.query.callerId;
-      socket.user = callerId;
-      next();
-    }
+    const callerId = socket.handshake.query.callerId;
+    socket.user = callerId;
+    next();
   });
+
+  // IO.on("connection", (socket) => {
+  //   console.log(socket.user, "Connected");
+  //   socket.join(socket.user);
+
+  //   socket.on("offer", (offer, recipientId) => {
+  //     console.log(recipientId, "recipientIdrecipientId");
+
+  //     socket.to(recipientId).emit("offer", offer, socket.user);
+  //   });
+
+  //   socket.on("answer", (answer, senderId) => {
+  //     console.log(senderId, "senderId");
+  //     socket.to(senderId).emit("answer", answer);
+  //   });
+
+  //   socket.on("iceCandidate", (candidate, recipientId) => {
+  //     console.log(recipientId, "ice CANDI");
+
+  //     socket.to(recipientId).emit("iceCandidate", candidate, socket.user);
+  //   });
+
+  //   socket.on("endCall", (recipientId) => {
+  //     socket.to(recipientId).emit("endCall", socket.user);
+  //   });
+
+  //   socket.on("disconnect", () => {
+  //     console.log("A user disconnected");
+  //   });
+  // });
+
+  // IO.use((socket, next) => {
+  //   if (socket.handshake.query) {
+  //     let callerId = socket.handshake.query.callerId;
+  //     socket.user = callerId;
+  //     next();
+  //   }
+  // });
 
   let onlineUsers = [];
 
