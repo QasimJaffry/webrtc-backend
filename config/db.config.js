@@ -3,13 +3,11 @@ const logger = require("../logger/api.logger");
 
 const connect = () => {
   const hostName = process.env.HOST;
-  const userName = "postgres";
+  const userName = process.env.USER;
   const password = process.env.PASSWORD;
   const database = process.env.DB;
   const dialect = process.env.DIALECT;
   const port = process.env.PORT;
-
-  console.log(userName, password, database, dialect);
 
   const sequelize = new Sequelize({
     host: hostName,

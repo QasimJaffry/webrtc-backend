@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "12345",
+    "username": "admin",
+    "password": "Test123",
     "database": "meetgreetdb",
     "host": "localhost",
     "dialect": "postgres"
@@ -14,7 +14,7 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "postgres",
+    "username": "admin",
     "password": "Test123",
     "database": "meetgreetdb",
     "host": "localhost",
