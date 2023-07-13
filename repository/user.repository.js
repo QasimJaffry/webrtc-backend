@@ -26,7 +26,8 @@ class UserRepository {
   async createUser(user) {
     let data = {};
     try {
-      user.createdate = new Date().toISOString();
+      user.createdAt = new Date().toISOString();
+      user.updatedAt = new Date().toISOString();
       data = await this.db.users.create(user);
     } catch (err) {
       logger.error("Error::" + err);
@@ -37,12 +38,12 @@ class UserRepository {
   async updateUser(user) {
     let data = {};
     try {
-      user.updateddate = new Date().toISOString();
+      user.updatedAt = new Date().toISOString();
       data = await this.db.users.update(
         { ...user },
         {
           where: {
-            id: user.id,
+            userId: user.userId,
           },
         }
       );
@@ -55,7 +56,9 @@ class UserRepository {
   async getUserById(userId) {
     let data = {};
     try {
-      await this.db.users.findByPk(userId);
+      data = await this.db.users.findOne({
+        where: { userId: userId },
+      });
     } catch (err) {
       logger.error("Error::" + err);
     }
@@ -67,14 +70,13 @@ class UserRepository {
     try {
       data = await this.db.users.destroy({
         where: {
-          id: userId,
+          userId: userId,
         },
       });
     } catch (err) {
       logger.error("Error::" + err);
     }
     return data;
-    return { status: `${data.deletedCount > 0 ? true : false}` };
   }
 }
 
