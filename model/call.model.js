@@ -1,15 +1,19 @@
 module.exports = (sequelize, DataTypes, Model) => {
-  class Users extends Model {}
+  class Calls extends Model {}
 
-  Users.init(
+  Calls.init(
     {
       id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
       },
-
-      token: {
+      callTime: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: false,
+      },
+      duration: {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: false,
@@ -17,9 +21,9 @@ module.exports = (sequelize, DataTypes, Model) => {
     },
     {
       sequelize,
-      modelName: "users",
+      modelName: "calls",
     }
   );
 
-  return Users;
+  return Calls;
 };

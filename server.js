@@ -9,6 +9,7 @@ const swaggerDocument = require("./swagger.json");
 const customCss = fs.readFileSync(process.cwd() + "/swagger.css", "utf8");
 const { getIO, initIO } = require("./socket");
 const userController = require("./controller/user.controller");
+const callController = require("./controller/call.controller");
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -46,8 +47,8 @@ app.put("/api/user", (req, res) => {
   userController.updateUser(req.body).then((data) => res.json(data));
 });
 
-app.delete("/api/user/:id", (req, res) => {
-  userController.deleteUser(req.params.id).then((data) => res.json(data));
+app.post("/api/addRecord", (req, res) => {
+  callController.addCallRecord(req.body).then((data) => res.json(data));
 });
 
 app.get("/", (req, res) => {
