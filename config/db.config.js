@@ -1,19 +1,21 @@
+require("dotenv").config();
 const { Sequelize, Model, DataTypes } = require("sequelize");
 const logger = require("../logger/api.logger");
 
 const connect = () => {
   const hostName = process.env.HOST;
-  const userName = process.env.USER;
+  const username = process.env.USER;
   const password = process.env.PASSWORD;
   const database = process.env.DB;
   const dialect = process.env.DIALECT;
   const port = process.env.PORT;
 
+<<<<<<< HEAD
   const sequelize = new Sequelize("meetgreetdb", "postgres", "Test123", {
+=======
+  const sequelize = new Sequelize(database, username, password, {
+>>>>>>> c065e56ddce331bcc303857c10ce6aaf1da525ee
     host: hostName,
-    database: database,
-    username: userName,
-    password: password,
     dialect: dialect,
     operatorsAliases: false,
     port: port,
