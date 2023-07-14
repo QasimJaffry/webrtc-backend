@@ -9,7 +9,7 @@ const connect = () => {
   const dialect = process.env.DIALECT;
   const port = process.env.PORT;
 
-  const sequelize = new Sequelize({
+  const sequelize = new Sequelize("meetgreetdb", "postgres", "Test123", {
     host: hostName,
     database: database,
     username: userName,
