@@ -9,16 +9,7 @@ const connect = () => {
   const database = process.env.DB;
   const dialect = process.env.DIALECT;
   const port = process.env.PORT;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-  const sequelize = new Sequelize("meetgreetdb", "postgres", "Test123", {
-=======
   const sequelize = new Sequelize(database, username, password, {
->>>>>>> c065e56ddce331bcc303857c10ce6aaf1da525ee
-=======
-  const sequelize = new Sequelize(database, "postgres", password, {
->>>>>>> 4f0f31733807dce6b8839b40831107b99789cbd7
     host: hostName,
     dialect: dialect,
     operatorsAliases: false,
