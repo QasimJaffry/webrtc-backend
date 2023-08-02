@@ -9,6 +9,8 @@ const swaggerDocument = require("./swagger.json");
 const customCss = fs.readFileSync(process.cwd() + "/swagger.css", "utf8");
 const { getIO, initIO } = require("./socket");
 const userController = require("./controller/user.controller");
+const callController = require("./controller/call.controller");
+
 const { VideoGrant } = require("twilio/lib/jwt/AccessToken");
 const AccessToken = require("twilio/lib/jwt/AccessToken");
 
@@ -72,6 +74,17 @@ app.put("/api/user", (req, res) => {
 
 app.delete("/api/user/:id", (req, res) => {
   userController.deleteUser(req.params.id).then((data) => res.json(data));
+});
+
+app.get("/api/call/:id", (req, res) => {
+  callController
+    .getCallRecordsById(req.params.id)
+    .then((data) => res.json(data));
+});
+
+app.post("/api/call", (req, res) => {
+  console.log(req.body, "create call");
+  callController.addUserCallRecord(req.body).then((data) => res.json(data));
 });
 
 app.get("/", (req, res) => {
