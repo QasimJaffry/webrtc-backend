@@ -1,6 +1,5 @@
 require("dotenv").config();
 const { Sequelize, Model, DataTypes } = require("sequelize");
-const logger = require("../logger/api.logger");
 
 const connect = () => {
   const hostName = process.env.HOST;
@@ -27,6 +26,7 @@ const connect = () => {
   db.Sequelize = Sequelize;
   db.sequelize = sequelize;
   db.users = require("../model/user.model")(sequelize, DataTypes, Model);
+  db.calls = require("../model/call.model")(sequelize, DataTypes, Model);
 
   return db;
 };
